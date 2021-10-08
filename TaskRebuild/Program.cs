@@ -20,15 +20,10 @@ namespace TaskRebuild
                         cki = Console.ReadKey(true);
                     }
                     Thread.Sleep(10);
-                }
+                } 
                 one.Action(cki);
                 cki = default;
             }
-        }
-
-        public virtual void Move()
-        {
-            
         }
     }
 }
