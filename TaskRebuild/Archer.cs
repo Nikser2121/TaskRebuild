@@ -14,7 +14,7 @@ namespace TaskRebuild
                     if (_ammo>0)
                     {
                         _ammo--;
-                        State.Attack(this);
+                        State=new AttackState();
                         break;
                     }
                     else
@@ -22,7 +22,7 @@ namespace TaskRebuild
                         Console.WriteLine("Reloading");
                         Thread.Sleep(1000);
                         _ammo=5;
-                        State.Idle(this);
+                        State=new IdleState();
                         break;
                     }
                 default:

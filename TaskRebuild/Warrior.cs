@@ -9,10 +9,16 @@ namespace TaskRebuild
             switch (cki.Key)
             {
                 case ConsoleKey.B:
-                    State.Block(this);
+                    if (State is BlockState)
+                    {
+                        State = new IdleState();
+                    }
+                    else
+                        State = new BlockState();
                     break;
                 default:
-                    base.Action(cki);
+                    if(State is not BlockState)
+                        base.Action(cki);
                     break;
             }
         }
