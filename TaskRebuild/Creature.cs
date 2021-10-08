@@ -5,7 +5,7 @@ namespace TaskRebuild
     public interface ICreatureState
     {
         void Idle(Creature creature);
-        void Move(Creature creature,char dir);
+        void Move(Creature creature,ConsoleKeyInfo cki);
         void Block(Creature creature);
         void Jump(Creature creature);
         void Rollover(Creature creature);
@@ -20,16 +20,16 @@ namespace TaskRebuild
             switch (cki.Key)
             {
                 case ConsoleKey.A:
-                    State.Move(this,cki.KeyChar);
+                    State.Move(this,cki);
                     break;
                 case ConsoleKey.W:
-                    State.Move(this,cki.KeyChar);
+                    State.Move(this,cki);
                     break;
                 case ConsoleKey.S:
-                    State.Move(this,cki.KeyChar);
+                    State.Move(this,cki);
                     break;
                 case ConsoleKey.D:
-                    State.Move(this,cki.KeyChar);
+                    State.Move(this,cki);
                     break;
                 case ConsoleKey.Spacebar:
                     State.Jump(this);
@@ -39,6 +39,9 @@ namespace TaskRebuild
                     break;
                 case ConsoleKey.C:
                     State.Attack(this);
+                    break;
+                default:
+                    State.Idle(this);
                     break;
             }
         }
@@ -57,20 +60,20 @@ namespace TaskRebuild
         public void Idle(Creature creature)
         {
         }
-        public void Move(Creature creature, char dir)
+        public void Move(Creature creature, ConsoleKeyInfo cki)
         {
-            switch (dir)
+            switch (cki.Key)
             {
-                case 'A':
+                case ConsoleKey.A:
                     Console.WriteLine("Going left");
                     break;
-                case 'W':
+                case ConsoleKey.W:
                     Console.WriteLine("Going forward");
                     break;
-                case 'D':
+                case ConsoleKey.D:
                     Console.WriteLine("Going right");
                     break;
-                case 'S':
+                case ConsoleKey.S:
                     Console.WriteLine("Going back");
                     break;
             }
@@ -112,7 +115,7 @@ namespace TaskRebuild
             creature.State = new IdleState();
         }
 
-        public void Move(Creature creature, char dir)
+        public void Move(Creature creature, ConsoleKeyInfo cki)
         {
         }
         
@@ -145,16 +148,16 @@ namespace TaskRebuild
     {
         public void Idle(Creature creature)
         {
-            Console.WriteLine("Idle");
-            creature.State = new IdleState();
         }
 
-        public void Move(Creature creature, char dir)
+        public void Move(Creature creature, ConsoleKeyInfo cki)
         {
             Console.WriteLine("Unable to move");
         }
         public void Block(Creature creature)
         {
+            Console.WriteLine("Idle");
+            creature.State = new IdleState();
         }
 
         public void Jump(Creature creature)
@@ -184,20 +187,20 @@ namespace TaskRebuild
             creature.State = new IdleState();
         }
 
-        public void Move(Creature creature, char dir)
+        public void Move(Creature creature, ConsoleKeyInfo cki)
         {
-            switch (dir)
+            switch (cki.Key)
             {
-                case 'A':
+                case ConsoleKey.A:
                     Console.WriteLine("Going left");
                     break;
-                case 'W':
+                case ConsoleKey.W:
                     Console.WriteLine("Going forward");
                     break;
-                case 'D':
+                case ConsoleKey.D:
                     Console.WriteLine("Going right");
                     break;
-                case 'S':
+                case ConsoleKey.S:
                     Console.WriteLine("Going back");
                     break;
             }
@@ -235,20 +238,20 @@ namespace TaskRebuild
             Console.WriteLine("Idle");
             creature.State = new IdleState();
         }
-        public void Move(Creature creature, char dir)
+        public void Move(Creature creature, ConsoleKeyInfo cki)
         {
-            switch (dir)
+            switch (cki.Key)
             {
-                case 'A':
+                case ConsoleKey.A:
                     Console.WriteLine("Going left");
                     break;
-                case 'W':
+                case ConsoleKey.W:
                     Console.WriteLine("Going forward");
                     break;
-                case 'D':
+                case ConsoleKey.D:
                     Console.WriteLine("Going right");
                     break;
-                case 'S':
+                case ConsoleKey.S:
                     Console.WriteLine("Going back");
                     break;
             }
@@ -286,20 +289,20 @@ namespace TaskRebuild
             Console.WriteLine("Idle");
             creature.State = new IdleState();
         }
-        public void Move(Creature creature, char dir)
+        public void Move(Creature creature, ConsoleKeyInfo cki)
         {
-            switch (dir)
+            switch (cki.Key)
             {
-                case 'A':
+                case ConsoleKey.A:
                     Console.WriteLine("Going left");
                     break;
-                case 'W':
+                case ConsoleKey.W:
                     Console.WriteLine("Going forward");
                     break;
-                case 'D':
+                case ConsoleKey.D:
                     Console.WriteLine("Going right");
                     break;
-                case 'S':
+                case ConsoleKey.S:
                     Console.WriteLine("Going back");
                     break;
             }

@@ -20,7 +20,17 @@ namespace TaskRebuild
                         cki = Console.ReadKey(true);
                     }
                     Thread.Sleep(10);
-                } 
+                }
+
+                if (cki.Key == ConsoleKey.P)
+                {
+                    one = new Archer();
+                }
+
+                if (cki.Key == ConsoleKey.O)
+                {
+                    one = new Warrior();
+                }
                 one.Action(cki);
                 cki = default;
             }
