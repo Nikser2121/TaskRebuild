@@ -10,7 +10,7 @@ namespace TaskRebuild
         public static void Main(string[] args)
         {
             ConsoleKeyInfo cki=default;
-            Creature one = new Creature(new IdleState());
+            Creature one = new Creature();
             while (true)
             {
                 for (int i = 0; i < 35; i++)

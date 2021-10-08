@@ -5,49 +5,45 @@ namespace TaskRebuild
     interface ICreatureState
     {
         void Idle(Creature creature);
-        void MoveForw(Creature creature);
-        void MoveBack(Creature creature);
-        void MoveLeft(Creature creature);
-        void MoveRight(Creature creature);
+        void Move(Creature creature,char dir);
+        void Block(Creature creature);
+        void Jump(Creature creature);
+        void Rollover(Creature creature);
 
     }
 
     class Creature
     {
+        public ICreatureState _state = new IdleState();
         public ICreatureState State { get; set; }
 
-        public Creature(ICreatureState cs)
+        public Creature()
         {
             Console.WriteLine("Idle");
-            State = cs;
         }
 
         public void Jump()
         {
-            Console.WriteLine("Jump");
+            State.Jump(this);
         }
 
-        public void MoveForw()
+        public void Move(Creature creature,char dir)
         {
-            State.MoveForw(this);
+            if(_state!=BlockState)
+            State.Move(this,dir);
         }
 
-        public void MoveBack()
+        public void Block()
         {
-            State.MoveBack(this);
+            State.Block(this);
         }
 
-        public void MoveLeft()
+        public void Rollover()
         {
-            State.MoveLeft(this);
+            State.Rollover(this);
         }
-
-        public void MoveRight()
-        {
-            State.MoveRight(this);
-        }
-
-        public void Idle()
+        
+        public static void Idle()
         {
             State.Idle(this);
         }
@@ -59,39 +55,56 @@ namespace TaskRebuild
         public void Idle(Creature creature)
         {
         }
-
-        public void MoveForw(Creature creature)
+        public void Move(Creature creature, char dir)
         {
-            Console.WriteLine("Moving forward");
-            creature.State = new MoveForwState();
-        }
+            switch (dir)
+            {
+                case 'A':
+                    Console.WriteLine("Going left");
+                    break;
+                case 'W':
+                    Console.WriteLine("Going forward");
+                    break;
+                case 'D':
+                    Console.WriteLine("Going right");
+                    break;
+                case 'S':
+                    Console.WriteLine("Going back");
+                    break;
+            }
 
-        public void MoveBack(Creature creature)
-        {
-            Console.WriteLine("Moving backward");
-            creature.State = new MoveBackState();
+            creature._state = new MoveState();
+            {
+                
+            }
         }
-
-        public void MoveLeft(Creature creature)
-        {
-            Console.WriteLine("Moving left");
-            creature.State = new MoveLeftState();
-        }
-
-        public void MoveRight(Creature creature)
-        {
-            Console.WriteLine("Moving right");
-            creature.State = new MoveRightState();
-        }
+        
     }
 
 
-    class MoveForwState : ICreatureState
+    class Move : ICreatureState
     {
         public void Idle(Creature creature)
         {
             Console.WriteLine("Idle");
             creature.State = new IdleState();
+        }
+
+        
+
+        public void Block(Creature creature)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Jump(Creature creature)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Rollover(Creature creature)
+        {
+            throw new NotImplementedException();
         }
 
         public void MoveForw(Creature creature)
